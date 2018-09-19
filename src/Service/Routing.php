@@ -7,18 +7,29 @@
  */
 
 namespace Service;
+
+use App\config;
 use Controller\DefaultController;
+use Controller\ExceptionController;
 
 class Routing
 {
+    private $url = [];
+
     public function __construct()
     {
-        $gg = 1;
-        $ff = parse_url($_SERVER['REMOTE_ADDR']);
+        $this->url = parse_url($_SERVER['REQUEST_URI']);
     }
 
-    public function getUrl()
+    public function start()
     {
-        $ff = 1;
+        $routings = array_flip(getRoutMap());
+
+        if (!isset($routings[$this->url['path']])) {
+            new ExceptionController(['msg' => 'Обычная 404-я']);
+        }
+
+        $defaultController = new DefaultController($routings[$this->url['path']] . 'Action');
+        $dd = 1;
     }
 }

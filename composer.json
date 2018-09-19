@@ -7,7 +7,7 @@
       "": "src/"
     },
     "files": [
-      "config.php"
+      "app/config.php"
     ]
   },
   "require": {

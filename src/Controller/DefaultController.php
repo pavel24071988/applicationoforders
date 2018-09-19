@@ -11,5 +11,13 @@ namespace Controller;
 
 class DefaultController
 {
+    public function __construct($method)
+    {
+        $this->{$method}();
+    }
 
+    private function indexAction()
+    {
+        echo 'Индекс';
+    }
 }
